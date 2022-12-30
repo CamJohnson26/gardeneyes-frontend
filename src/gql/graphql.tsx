@@ -931,15 +931,60 @@ export type Subscription_RootSection_StreamArgs = {
   where?: InputMaybe<Section_Bool_Exp>;
 };
 
-export type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type InsertPlantMutationVariables = Exact<{
+  name?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['String']>;
+}>;
 
 
-export type MyQueryQuery = { __typename?: 'query_root', plant: Array<{ __typename?: 'plant', id: string, name: string, image: string }> };
+export type InsertPlantMutation = { __typename?: 'mutation_root', insert_plant_one?: { __typename: 'plant', id: string, name: string } | null };
+
+export type PlantQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export const MyQueryDocument = gql`
-    query MyQuery {
+export type PlantQuery = { __typename?: 'query_root', plant: Array<{ __typename: 'plant', id: string, name: string, image: string }> };
+
+
+export const InsertPlantDocument = gql`
+    mutation InsertPlant($name: String = "", $image: String = "") {
+  insert_plant_one(object: {image: $image, name: $name}) {
+    __typename
+    id
+    name
+  }
+}
+    `;
+export type InsertPlantMutationFn = Apollo.MutationFunction<InsertPlantMutation, InsertPlantMutationVariables>;
+
+/**
+ * __useInsertPlantMutation__
+ *
+ * To run a mutation, you first call `useInsertPlantMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertPlantMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertPlantMutation, { data, loading, error }] = useInsertPlantMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      image: // value for 'image'
+ *   },
+ * });
+ */
+export function useInsertPlantMutation(baseOptions?: Apollo.MutationHookOptions<InsertPlantMutation, InsertPlantMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertPlantMutation, InsertPlantMutationVariables>(InsertPlantDocument, options);
+      }
+export type InsertPlantMutationHookResult = ReturnType<typeof useInsertPlantMutation>;
+export type InsertPlantMutationResult = Apollo.MutationResult<InsertPlantMutation>;
+export type InsertPlantMutationOptions = Apollo.BaseMutationOptions<InsertPlantMutation, InsertPlantMutationVariables>;
+export const PlantDocument = gql`
+    query Plant {
   plant {
+    __typename
     id
     name
     image
@@ -948,28 +993,28 @@ export const MyQueryDocument = gql`
     `;
 
 /**
- * __useMyQueryQuery__
+ * __usePlantQuery__
  *
- * To run a query within a React component, call `useMyQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useMyQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `usePlantQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePlantQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useMyQueryQuery({
+ * const { data, loading, error } = usePlantQuery({
  *   variables: {
  *   },
  * });
  */
-export function useMyQueryQuery(baseOptions?: Apollo.QueryHookOptions<MyQueryQuery, MyQueryQueryVariables>) {
+export function usePlantQuery(baseOptions?: Apollo.QueryHookOptions<PlantQuery, PlantQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MyQueryQuery, MyQueryQueryVariables>(MyQueryDocument, options);
+        return Apollo.useQuery<PlantQuery, PlantQueryVariables>(PlantDocument, options);
       }
-export function useMyQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyQueryQuery, MyQueryQueryVariables>) {
+export function usePlantLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PlantQuery, PlantQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MyQueryQuery, MyQueryQueryVariables>(MyQueryDocument, options);
+          return Apollo.useLazyQuery<PlantQuery, PlantQueryVariables>(PlantDocument, options);
         }
-export type MyQueryQueryHookResult = ReturnType<typeof useMyQueryQuery>;
-export type MyQueryLazyQueryHookResult = ReturnType<typeof useMyQueryLazyQuery>;
-export type MyQueryQueryResult = Apollo.QueryResult<MyQueryQuery, MyQueryQueryVariables>;
+export type PlantQueryHookResult = ReturnType<typeof usePlantQuery>;
+export type PlantLazyQueryHookResult = ReturnType<typeof usePlantLazyQuery>;
+export type PlantQueryResult = Apollo.QueryResult<PlantQuery, PlantQueryVariables>;

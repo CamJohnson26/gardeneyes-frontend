@@ -1,0 +1,7 @@
+mutation InsertPlant($name: String = "", $image: String = "") {
+  insert_plant_one(object: {image: $image, name: $name}) {
+    __typename
+    id
+    name
+  }
+}
