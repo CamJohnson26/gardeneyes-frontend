@@ -1,0 +1,16 @@
+query Planting {
+  planting {
+    created_on
+    date
+    id
+    plantByPlant {
+      id
+      image
+      name
+    }
+    sectionBySection {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,6 @@
+
+mutation InsertPlanting($date: date = "" $plant: String = "", $section: String = "") {
+  insert_planting_one(object: {date: $date, plant: $plant, section: $section}) {
+    id
+  }
+}

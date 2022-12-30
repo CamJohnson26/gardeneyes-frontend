@@ -2747,6 +2747,45 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "plant_obj_rel_insert_input",
+        "description": "input type for inserting object relation for remote table \"plant\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "plant_insert_input",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "on_conflict",
+            "description": "upsert condition",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "plant_on_conflict",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "plant_on_conflict",
         "description": "on_conflict condition type for table \"plant\"",
         "fields": null,
@@ -3182,6 +3221,22 @@
             "deprecationReason": null
           },
           {
+            "name": "plantByPlant",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "plant",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "section",
             "description": null,
             "args": [],
@@ -3191,6 +3246,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sectionBySection",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "section",
                 "ofType": null
               }
             },
@@ -3441,11 +3512,35 @@
             "deprecationReason": null
           },
           {
+            "name": "plantByPlant",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "plant_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "section",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sectionBySection",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "section_bool_exp",
               "ofType": null
             },
             "defaultValue": null,
@@ -3529,11 +3624,35 @@
             "deprecationReason": null
           },
           {
+            "name": "plantByPlant",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "plant_obj_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "section",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sectionBySection",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "section_obj_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null,
@@ -3856,11 +3975,35 @@
             "deprecationReason": null
           },
           {
+            "name": "plantByPlant",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "plant_order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "section",
             "description": null,
             "type": {
               "kind": "ENUM",
               "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sectionBySection",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "section_order_by",
               "ofType": null
             },
             "defaultValue": null,
@@ -5318,6 +5461,45 @@
         ],
         "inputFields": null,
         "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "section_obj_rel_insert_input",
+        "description": "input type for inserting object relation for remote table \"section\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "section_insert_input",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "on_conflict",
+            "description": "upsert condition",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "section_on_conflict",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },

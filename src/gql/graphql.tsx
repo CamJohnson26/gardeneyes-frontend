@@ -351,6 +351,13 @@ export type Plant_Mutation_Response = {
   returning: Array<Plant>;
 };
 
+/** input type for inserting object relation for remote table "plant" */
+export type Plant_Obj_Rel_Insert_Input = {
+  data: Plant_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Plant_On_Conflict>;
+};
+
 /** on_conflict condition type for table "plant" */
 export type Plant_On_Conflict = {
   constraint: Plant_Constraint;
@@ -425,7 +432,11 @@ export type Planting = {
   date: Scalars['date'];
   id: Scalars['String'];
   plant: Scalars['String'];
+  /** An object relationship */
+  plantByPlant: Plant;
   section: Scalars['String'];
+  /** An object relationship */
+  sectionBySection: Section;
 };
 
 /** aggregated selection of "planting" */
@@ -459,7 +470,9 @@ export type Planting_Bool_Exp = {
   date?: InputMaybe<Date_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
   plant?: InputMaybe<String_Comparison_Exp>;
+  plantByPlant?: InputMaybe<Plant_Bool_Exp>;
   section?: InputMaybe<String_Comparison_Exp>;
+  sectionBySection?: InputMaybe<Section_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "planting" */
@@ -474,7 +487,9 @@ export type Planting_Insert_Input = {
   date?: InputMaybe<Scalars['date']>;
   id?: InputMaybe<Scalars['String']>;
   plant?: InputMaybe<Scalars['String']>;
+  plantByPlant?: InputMaybe<Plant_Obj_Rel_Insert_Input>;
   section?: InputMaybe<Scalars['String']>;
+  sectionBySection?: InputMaybe<Section_Obj_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -519,7 +534,9 @@ export type Planting_Order_By = {
   date?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   plant?: InputMaybe<Order_By>;
+  plantByPlant?: InputMaybe<Plant_Order_By>;
   section?: InputMaybe<Order_By>;
+  sectionBySection?: InputMaybe<Section_Order_By>;
 };
 
 /** primary key columns input for table: planting */
@@ -753,6 +770,13 @@ export type Section_Mutation_Response = {
   returning: Array<Section>;
 };
 
+/** input type for inserting object relation for remote table "section" */
+export type Section_Obj_Rel_Insert_Input = {
+  data: Section_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Section_On_Conflict>;
+};
+
 /** on_conflict condition type for table "section" */
 export type Section_On_Conflict = {
   constraint: Section_Constraint;
@@ -939,6 +963,20 @@ export type InsertPlantMutationVariables = Exact<{
 
 export type InsertPlantMutation = { __typename?: 'mutation_root', insert_plant_one?: { __typename: 'plant', id: string, name: string } | null };
 
+export type InsertPlantingMutationVariables = Exact<{
+  date?: InputMaybe<Scalars['date']>;
+  plant?: InputMaybe<Scalars['String']>;
+  section?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type InsertPlantingMutation = { __typename?: 'mutation_root', insert_planting_one?: { __typename?: 'planting', id: string } | null };
+
+export type PlantingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PlantingQuery = { __typename?: 'query_root', planting: Array<{ __typename?: 'planting', created_on: any, date: any, id: string, plantByPlant: { __typename?: 'plant', id: string, image: string, name: string }, sectionBySection: { __typename?: 'section', id: string, name: string } }> };
+
 export type InsertSectionMutationVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;
 }>;
@@ -993,6 +1031,86 @@ export function useInsertPlantMutation(baseOptions?: Apollo.MutationHookOptions<
 export type InsertPlantMutationHookResult = ReturnType<typeof useInsertPlantMutation>;
 export type InsertPlantMutationResult = Apollo.MutationResult<InsertPlantMutation>;
 export type InsertPlantMutationOptions = Apollo.BaseMutationOptions<InsertPlantMutation, InsertPlantMutationVariables>;
+export const InsertPlantingDocument = gql`
+    mutation InsertPlanting($date: date = "", $plant: String = "", $section: String = "") {
+  insert_planting_one(object: {date: $date, plant: $plant, section: $section}) {
+    id
+  }
+}
+    `;
+export type InsertPlantingMutationFn = Apollo.MutationFunction<InsertPlantingMutation, InsertPlantingMutationVariables>;
+
+/**
+ * __useInsertPlantingMutation__
+ *
+ * To run a mutation, you first call `useInsertPlantingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertPlantingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertPlantingMutation, { data, loading, error }] = useInsertPlantingMutation({
+ *   variables: {
+ *      date: // value for 'date'
+ *      plant: // value for 'plant'
+ *      section: // value for 'section'
+ *   },
+ * });
+ */
+export function useInsertPlantingMutation(baseOptions?: Apollo.MutationHookOptions<InsertPlantingMutation, InsertPlantingMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertPlantingMutation, InsertPlantingMutationVariables>(InsertPlantingDocument, options);
+      }
+export type InsertPlantingMutationHookResult = ReturnType<typeof useInsertPlantingMutation>;
+export type InsertPlantingMutationResult = Apollo.MutationResult<InsertPlantingMutation>;
+export type InsertPlantingMutationOptions = Apollo.BaseMutationOptions<InsertPlantingMutation, InsertPlantingMutationVariables>;
+export const PlantingDocument = gql`
+    query Planting {
+  planting {
+    created_on
+    date
+    id
+    plantByPlant {
+      id
+      image
+      name
+    }
+    sectionBySection {
+      id
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __usePlantingQuery__
+ *
+ * To run a query within a React component, call `usePlantingQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePlantingQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePlantingQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePlantingQuery(baseOptions?: Apollo.QueryHookOptions<PlantingQuery, PlantingQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PlantingQuery, PlantingQueryVariables>(PlantingDocument, options);
+      }
+export function usePlantingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PlantingQuery, PlantingQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PlantingQuery, PlantingQueryVariables>(PlantingDocument, options);
+        }
+export type PlantingQueryHookResult = ReturnType<typeof usePlantingQuery>;
+export type PlantingLazyQueryHookResult = ReturnType<typeof usePlantingLazyQuery>;
+export type PlantingQueryResult = Apollo.QueryResult<PlantingQuery, PlantingQueryVariables>;
 export const InsertSectionDocument = gql`
     mutation InsertSection($name: String = "") {
   insert_section_one(object: {name: $name}) {
