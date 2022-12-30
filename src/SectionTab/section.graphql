@@ -1,0 +1,7 @@
+query Section {
+  section {
+    __typename
+    id
+    name
+  }
+}

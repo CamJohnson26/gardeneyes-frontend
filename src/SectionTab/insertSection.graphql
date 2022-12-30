@@ -1,0 +1,7 @@
+mutation InsertSection($name: String = "") {
+  insert_section_one(object: {name: $name}) {
+    __typename
+    id
+    name
+  }
+}

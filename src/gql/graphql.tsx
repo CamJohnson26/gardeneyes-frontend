@@ -939,6 +939,18 @@ export type InsertPlantMutationVariables = Exact<{
 
 export type InsertPlantMutation = { __typename?: 'mutation_root', insert_plant_one?: { __typename: 'plant', id: string, name: string } | null };
 
+export type InsertSectionMutationVariables = Exact<{
+  name?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type InsertSectionMutation = { __typename?: 'mutation_root', insert_section_one?: { __typename: 'section', id: string, name: string } | null };
+
+export type SectionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SectionQuery = { __typename?: 'query_root', section: Array<{ __typename: 'section', id: string, name: string }> };
+
 export type PlantQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -981,6 +993,77 @@ export function useInsertPlantMutation(baseOptions?: Apollo.MutationHookOptions<
 export type InsertPlantMutationHookResult = ReturnType<typeof useInsertPlantMutation>;
 export type InsertPlantMutationResult = Apollo.MutationResult<InsertPlantMutation>;
 export type InsertPlantMutationOptions = Apollo.BaseMutationOptions<InsertPlantMutation, InsertPlantMutationVariables>;
+export const InsertSectionDocument = gql`
+    mutation InsertSection($name: String = "") {
+  insert_section_one(object: {name: $name}) {
+    __typename
+    id
+    name
+  }
+}
+    `;
+export type InsertSectionMutationFn = Apollo.MutationFunction<InsertSectionMutation, InsertSectionMutationVariables>;
+
+/**
+ * __useInsertSectionMutation__
+ *
+ * To run a mutation, you first call `useInsertSectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertSectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertSectionMutation, { data, loading, error }] = useInsertSectionMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useInsertSectionMutation(baseOptions?: Apollo.MutationHookOptions<InsertSectionMutation, InsertSectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertSectionMutation, InsertSectionMutationVariables>(InsertSectionDocument, options);
+      }
+export type InsertSectionMutationHookResult = ReturnType<typeof useInsertSectionMutation>;
+export type InsertSectionMutationResult = Apollo.MutationResult<InsertSectionMutation>;
+export type InsertSectionMutationOptions = Apollo.BaseMutationOptions<InsertSectionMutation, InsertSectionMutationVariables>;
+export const SectionDocument = gql`
+    query Section {
+  section {
+    __typename
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useSectionQuery__
+ *
+ * To run a query within a React component, call `useSectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSectionQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSectionQuery(baseOptions?: Apollo.QueryHookOptions<SectionQuery, SectionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SectionQuery, SectionQueryVariables>(SectionDocument, options);
+      }
+export function useSectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SectionQuery, SectionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SectionQuery, SectionQueryVariables>(SectionDocument, options);
+        }
+export type SectionQueryHookResult = ReturnType<typeof useSectionQuery>;
+export type SectionLazyQueryHookResult = ReturnType<typeof useSectionLazyQuery>;
+export type SectionQueryResult = Apollo.QueryResult<SectionQuery, SectionQueryVariables>;
 export const PlantDocument = gql`
     query Plant {
   plant {
