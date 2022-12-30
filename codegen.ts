@@ -8,16 +8,15 @@ const config: CodegenConfig = {
       "https://possible-gnu-20.hasura.app/v1/graphql": {
         "headers": {
           "x-hasura-role": "admin",
-          "x-hasura-admin-secret": ""
+          "x-hasura-admin-secret": "Kf5qtn2JMKQxjYl8v77PoS93mrf9JEM0azeZLfWYsbP9WwnKpngmwOEzU2jkXfqu"
         }
       }
     }
   ],
-  // documents: "src/**/*.tsx",
+  documents: "src/**/*.graphql",
   generates: {
-    "src/gql/": {
-      preset: "client",
-      plugins: []
+    "src/gql/graphql.tsx": {
+      plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
     },
     "./graphql.schema.json": {
       plugins: ["introspection"]

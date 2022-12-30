@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.7.3",
     "@graphql-codegen/cli": "^2.16.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -44,8 +45,9 @@
     ]
   },
   "devDependencies": {
-    "@graphql-codegen/introspection": "2.2.3",
     "@graphql-codegen/cli": "2.16.2",
-    "@graphql-codegen/client-preset": "1.2.4"
+    "@graphql-codegen/client-preset": "1.2.4",
+    "@graphql-codegen/introspection": "2.2.3",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7"
   }
 }
