@@ -2,6 +2,7 @@
   "name": "gardeneyes",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.gardeneyes.team/",
   "dependencies": {
     "@apollo/client": "^3.7.3",
     "@graphql-codegen/cli": "^2.16.2",
@@ -20,6 +21,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -48,6 +51,7 @@
     "@graphql-codegen/cli": "2.16.2",
     "@graphql-codegen/client-preset": "1.2.4",
     "@graphql-codegen/introspection": "2.2.3",
-    "@graphql-codegen/typescript-react-apollo": "^3.3.7"
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "gh-pages": "^4.0.0"
   }
 }
