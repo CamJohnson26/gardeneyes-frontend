@@ -55,12 +55,17 @@ const SectionList = () => {
                     <Grid item>
                         <Button variant="text" onClick={onClose}>Cancel</Button>
                         <Button variant="contained" onClick={() => {
-                            insertSection({
-                                variables: {
-                                    name: sectionName,
-                                }
-                            })
-                            onClose()
+                            if (!sectionName) {
+                                alert('Missing data!')
+                            } else {
+
+                                insertSection({
+                                    variables: {
+                                        name: sectionName,
+                                    }
+                                })
+                                onClose()
+                            }
                         }}>Create</Button></Grid>
                 </Grid>
             </Box>

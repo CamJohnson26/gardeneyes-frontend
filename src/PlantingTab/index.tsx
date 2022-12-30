@@ -116,14 +116,19 @@ const PlantingList = () => {
                     <Grid item>
                         <Button variant="text" onClick={onClose}>Cancel</Button>
                         <Button variant="contained" onClick={() => {
-                            insertPlanting({
-                                variables: {
-                                    date,
-                                    plant: plantId,
-                                    section: sectionId
-                                }
-                            })
-                            onClose()
+                            if (!date || !plantId || !sectionId) {
+                                alert('Missing some data!')
+                            } else {
+
+                                insertPlanting({
+                                    variables: {
+                                        date,
+                                        plant: plantId,
+                                        section: sectionId
+                                    }
+                                })
+                                onClose()
+                            }
                         }}>Create</Button></Grid>
                 </Grid>
             </Box>

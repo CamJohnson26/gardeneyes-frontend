@@ -64,13 +64,18 @@ const PlantList = () => {
                     <Grid item>
                         <Button variant="text" onClick={onClose}>Cancel</Button>
                         <Button variant="contained" onClick={() => {
-                            insertPlant({
-                                variables: {
-                                    name: plantName,
-                                    image: imageUrl
-                                }
-                            })
-                            onClose()
+                            if (!plantName || !imageUrl) {
+                                alert('Missing data!')
+                            } else {
+
+                                insertPlant({
+                                    variables: {
+                                        name: plantName,
+                                        image: imageUrl
+                                    }
+                                })
+                                onClose()
+                            }
                         }}>Create</Button></Grid>
                 </Grid>
             </Box>
