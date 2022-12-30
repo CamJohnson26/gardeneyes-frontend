@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/gardeneyes-frontend/static/css/main.073c9b0a.css",
-    "main.js": "/gardeneyes-frontend/static/js/main.44f80ac6.js",
-    "static/js/787.993580e3.chunk.js": "/gardeneyes-frontend/static/js/787.993580e3.chunk.js",
-    "static/media/logo.svg": "/gardeneyes-frontend/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/gardeneyes-frontend/index.html",
-    "main.073c9b0a.css.map": "/gardeneyes-frontend/static/css/main.073c9b0a.css.map",
-    "main.44f80ac6.js.map": "/gardeneyes-frontend/static/js/main.44f80ac6.js.map",
-    "787.993580e3.chunk.js.map": "/gardeneyes-frontend/static/js/787.993580e3.chunk.js.map"
+    "main.css": "/static/css/main.073c9b0a.css",
+    "main.js": "/static/js/main.5a3ae49b.js",
+    "static/js/787.993580e3.chunk.js": "/static/js/787.993580e3.chunk.js",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
+    "main.5a3ae49b.js.map": "/static/js/main.5a3ae49b.js.map",
+    "787.993580e3.chunk.js.map": "/static/js/787.993580e3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.44f80ac6.js"
+    "static/js/main.5a3ae49b.js"
   ]
 }
