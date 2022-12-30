@@ -277,6 +277,7 @@ export type Plant = {
   id: Scalars['String'];
   image: Scalars['String'];
   name: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "plant" */
@@ -309,6 +310,7 @@ export type Plant_Bool_Exp = {
   id?: InputMaybe<String_Comparison_Exp>;
   image?: InputMaybe<String_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
+  notes?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "plant" */
@@ -324,6 +326,7 @@ export type Plant_Insert_Input = {
   id?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -332,6 +335,7 @@ export type Plant_Max_Fields = {
   id?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  notes?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
@@ -340,6 +344,7 @@ export type Plant_Min_Fields = {
   id?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  notes?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "plant" */
@@ -370,6 +375,7 @@ export type Plant_Order_By = {
   id?: InputMaybe<Order_By>;
   image?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  notes?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: plant */
@@ -384,7 +390,9 @@ export enum Plant_Select_Column {
   /** column name */
   Image = 'image',
   /** column name */
-  Name = 'name'
+  Name = 'name',
+  /** column name */
+  Notes = 'notes'
 }
 
 /** input type for updating data in table "plant" */
@@ -392,6 +400,7 @@ export type Plant_Set_Input = {
   id?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
 };
 
 /** Streaming cursor of the table "plant" */
@@ -407,6 +416,7 @@ export type Plant_Stream_Cursor_Value_Input = {
   id?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
 };
 
 /** update columns of table "plant" */
@@ -416,7 +426,9 @@ export enum Plant_Update_Column {
   /** column name */
   Image = 'image',
   /** column name */
-  Name = 'name'
+  Name = 'name',
+  /** column name */
+  Notes = 'notes'
 }
 
 export type Plant_Updates = {
@@ -431,6 +443,7 @@ export type Planting = {
   created_on: Scalars['date'];
   date: Scalars['date'];
   id: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
   plant: Scalars['String'];
   /** An object relationship */
   plantByPlant: Plant;
@@ -469,6 +482,7 @@ export type Planting_Bool_Exp = {
   created_on?: InputMaybe<Date_Comparison_Exp>;
   date?: InputMaybe<Date_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
+  notes?: InputMaybe<String_Comparison_Exp>;
   plant?: InputMaybe<String_Comparison_Exp>;
   plantByPlant?: InputMaybe<Plant_Bool_Exp>;
   section?: InputMaybe<String_Comparison_Exp>;
@@ -486,6 +500,7 @@ export type Planting_Insert_Input = {
   created_on?: InputMaybe<Scalars['date']>;
   date?: InputMaybe<Scalars['date']>;
   id?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
   plant?: InputMaybe<Scalars['String']>;
   plantByPlant?: InputMaybe<Plant_Obj_Rel_Insert_Input>;
   section?: InputMaybe<Scalars['String']>;
@@ -498,6 +513,7 @@ export type Planting_Max_Fields = {
   created_on?: Maybe<Scalars['date']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['String']>;
+  notes?: Maybe<Scalars['String']>;
   plant?: Maybe<Scalars['String']>;
   section?: Maybe<Scalars['String']>;
 };
@@ -508,6 +524,7 @@ export type Planting_Min_Fields = {
   created_on?: Maybe<Scalars['date']>;
   date?: Maybe<Scalars['date']>;
   id?: Maybe<Scalars['String']>;
+  notes?: Maybe<Scalars['String']>;
   plant?: Maybe<Scalars['String']>;
   section?: Maybe<Scalars['String']>;
 };
@@ -533,6 +550,7 @@ export type Planting_Order_By = {
   created_on?: InputMaybe<Order_By>;
   date?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  notes?: InputMaybe<Order_By>;
   plant?: InputMaybe<Order_By>;
   plantByPlant?: InputMaybe<Plant_Order_By>;
   section?: InputMaybe<Order_By>;
@@ -553,6 +571,8 @@ export enum Planting_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Notes = 'notes',
+  /** column name */
   Plant = 'plant',
   /** column name */
   Section = 'section'
@@ -563,6 +583,7 @@ export type Planting_Set_Input = {
   created_on?: InputMaybe<Scalars['date']>;
   date?: InputMaybe<Scalars['date']>;
   id?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
   plant?: InputMaybe<Scalars['String']>;
   section?: InputMaybe<Scalars['String']>;
 };
@@ -580,6 +601,7 @@ export type Planting_Stream_Cursor_Value_Input = {
   created_on?: InputMaybe<Scalars['date']>;
   date?: InputMaybe<Scalars['date']>;
   id?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
   plant?: InputMaybe<Scalars['String']>;
   section?: InputMaybe<Scalars['String']>;
 };
@@ -592,6 +614,8 @@ export enum Planting_Update_Column {
   Date = 'date',
   /** column name */
   Id = 'id',
+  /** column name */
+  Notes = 'notes',
   /** column name */
   Plant = 'plant',
   /** column name */
@@ -700,6 +724,7 @@ export type Section = {
   __typename?: 'section';
   id: Scalars['String'];
   name: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "section" */
@@ -731,6 +756,7 @@ export type Section_Bool_Exp = {
   _or?: InputMaybe<Array<Section_Bool_Exp>>;
   id?: InputMaybe<String_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
+  notes?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "section" */
@@ -745,6 +771,7 @@ export enum Section_Constraint {
 export type Section_Insert_Input = {
   id?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -752,6 +779,7 @@ export type Section_Max_Fields = {
   __typename?: 'section_max_fields';
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  notes?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
@@ -759,6 +787,7 @@ export type Section_Min_Fields = {
   __typename?: 'section_min_fields';
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  notes?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "section" */
@@ -788,6 +817,7 @@ export type Section_On_Conflict = {
 export type Section_Order_By = {
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  notes?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: section */
@@ -800,13 +830,16 @@ export enum Section_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Name = 'name'
+  Name = 'name',
+  /** column name */
+  Notes = 'notes'
 }
 
 /** input type for updating data in table "section" */
 export type Section_Set_Input = {
   id?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
 };
 
 /** Streaming cursor of the table "section" */
@@ -821,6 +854,7 @@ export type Section_Stream_Cursor_Input = {
 export type Section_Stream_Cursor_Value_Input = {
   id?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
 };
 
 /** update columns of table "section" */
@@ -828,7 +862,9 @@ export enum Section_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Name = 'name'
+  Name = 'name',
+  /** column name */
+  Notes = 'notes'
 }
 
 export type Section_Updates = {
@@ -967,6 +1003,7 @@ export type InsertPlantingMutationVariables = Exact<{
   date?: InputMaybe<Scalars['date']>;
   plant?: InputMaybe<Scalars['String']>;
   section?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
 }>;
 
 
@@ -975,10 +1012,11 @@ export type InsertPlantingMutation = { __typename?: 'mutation_root', insert_plan
 export type PlantingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PlantingQuery = { __typename?: 'query_root', planting: Array<{ __typename?: 'planting', created_on: any, date: any, id: string, plantByPlant: { __typename?: 'plant', id: string, image: string, name: string }, sectionBySection: { __typename?: 'section', id: string, name: string } }> };
+export type PlantingQuery = { __typename?: 'query_root', planting: Array<{ __typename?: 'planting', created_on: any, date: any, id: string, notes?: string | null, plantByPlant: { __typename?: 'plant', id: string, image: string, name: string }, sectionBySection: { __typename?: 'section', id: string, name: string } }> };
 
 export type InsertSectionMutationVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
 }>;
 
 
@@ -987,7 +1025,7 @@ export type InsertSectionMutation = { __typename?: 'mutation_root', insert_secti
 export type SectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SectionQuery = { __typename?: 'query_root', section: Array<{ __typename: 'section', id: string, name: string }> };
+export type SectionQuery = { __typename?: 'query_root', section: Array<{ __typename: 'section', id: string, name: string, notes?: string | null }> };
 
 export type PlantQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1032,8 +1070,10 @@ export type InsertPlantMutationHookResult = ReturnType<typeof useInsertPlantMuta
 export type InsertPlantMutationResult = Apollo.MutationResult<InsertPlantMutation>;
 export type InsertPlantMutationOptions = Apollo.BaseMutationOptions<InsertPlantMutation, InsertPlantMutationVariables>;
 export const InsertPlantingDocument = gql`
-    mutation InsertPlanting($date: date = "", $plant: String = "", $section: String = "") {
-  insert_planting_one(object: {date: $date, plant: $plant, section: $section}) {
+    mutation InsertPlanting($date: date = "", $plant: String = "", $section: String = "", $notes: String = "") {
+  insert_planting_one(
+    object: {date: $date, plant: $plant, section: $section, notes: $notes}
+  ) {
     id
   }
 }
@@ -1056,6 +1096,7 @@ export type InsertPlantingMutationFn = Apollo.MutationFunction<InsertPlantingMut
  *      date: // value for 'date'
  *      plant: // value for 'plant'
  *      section: // value for 'section'
+ *      notes: // value for 'notes'
  *   },
  * });
  */
@@ -1072,6 +1113,7 @@ export const PlantingDocument = gql`
     created_on
     date
     id
+    notes
     plantByPlant {
       id
       image
@@ -1112,8 +1154,8 @@ export type PlantingQueryHookResult = ReturnType<typeof usePlantingQuery>;
 export type PlantingLazyQueryHookResult = ReturnType<typeof usePlantingLazyQuery>;
 export type PlantingQueryResult = Apollo.QueryResult<PlantingQuery, PlantingQueryVariables>;
 export const InsertSectionDocument = gql`
-    mutation InsertSection($name: String = "") {
-  insert_section_one(object: {name: $name}) {
+    mutation InsertSection($name: String = "", $notes: String = "") {
+  insert_section_one(object: {name: $name, notes: $notes}) {
     __typename
     id
     name
@@ -1136,6 +1178,7 @@ export type InsertSectionMutationFn = Apollo.MutationFunction<InsertSectionMutat
  * const [insertSectionMutation, { data, loading, error }] = useInsertSectionMutation({
  *   variables: {
  *      name: // value for 'name'
+ *      notes: // value for 'notes'
  *   },
  * });
  */
@@ -1152,6 +1195,7 @@ export const SectionDocument = gql`
     __typename
     id
     name
+    notes
   }
 }
     `;

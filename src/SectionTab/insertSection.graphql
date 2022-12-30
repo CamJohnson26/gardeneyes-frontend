@@ -1,5 +1,5 @@
-mutation InsertSection($name: String = "") {
-  insert_section_one(object: {name: $name}) {
+mutation InsertSection($name: String = "", $notes: String = "") {
+  insert_section_one(object: {name: $name, notes: $notes}) {
     __typename
     id
     name

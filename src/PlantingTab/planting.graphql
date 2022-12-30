@@ -3,6 +3,7 @@ query Planting {
     created_on
     date
     id
+    notes
     plantByPlant {
       id
       image

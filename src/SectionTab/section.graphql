@@ -3,5 +3,6 @@ query Section {
     __typename
     id
     name
+    notes
   }
 }

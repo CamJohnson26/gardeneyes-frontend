@@ -12,6 +12,7 @@ const PlantingList = () => {
     const [sectionId, setSectionId] = useState<string | null>(null);
     const [plantId, setPlantId] = useState<string | null>(null);
     const [date, setDate] = useState<Date | null>(null);
+    const [notes, setNotes] = useState<string | null>(null);
 
     const { data: plantData } = usePlantQuery();
     const { data: sectionData } = useSectionQuery();
@@ -53,6 +54,8 @@ const PlantingList = () => {
                 />
                 <CardContent>
                     <Typography variant="h4">{planting.date}</Typography>
+                    <Typography variant="h5">{planting.sectionBySection.name}</Typography>
+                    <Typography>{planting.notes}</Typography>
                 </CardContent></Card></Grid>
     })}
         <Button onClick={() => setAdding(true)}>Add New</Button>
@@ -72,7 +75,7 @@ const PlantingList = () => {
                 backgroundColor: 'white',
                 borderRadius: 5,
             }} p={1}>
-                <Grid container spacing={2}><Grid item>
+                <Grid container spacing={2} direction={"column"}><Grid item>
                     <LocalizationProvider dateAdapter={AdapterMoment}>
                         <DesktopDatePicker
                             label="Date desktop"
@@ -112,6 +115,16 @@ const PlantingList = () => {
                             setSectionId(id);
                         }}
                     /></Grid>
+                    <Grid item>
+
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Multiline"
+                            multiline
+                            rows={4}
+                            onChange={(val) => setNotes(val.target.value || '')}
+                        />
+                    </Grid>
 
                     <Grid item>
                         <Button variant="text" onClick={onClose}>Cancel</Button>
@@ -124,7 +137,8 @@ const PlantingList = () => {
                                     variables: {
                                         date,
                                         plant: plantId,
-                                        section: sectionId
+                                        section: sectionId,
+                                        notes,
                                     }
                                 })
                                 onClose()

@@ -1,6 +1,6 @@
 
-mutation InsertPlanting($date: date = "" $plant: String = "", $section: String = "") {
-  insert_planting_one(object: {date: $date, plant: $plant, section: $section}) {
+mutation InsertPlanting($date: date = "" $plant: String = "", $section: String = "", $notes: String = "") {
+  insert_planting_one(object: {date: $date, plant: $plant, section: $section, notes: $notes}) {
     id
   }
 }

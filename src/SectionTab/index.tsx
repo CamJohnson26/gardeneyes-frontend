@@ -7,6 +7,7 @@ const SectionList = () => {
 
     const [adding, setAdding] = useState(false);
     const [sectionName, setSectionName] = useState<string | null>(null);
+    const [notes, setNotes] = useState<string | null>(null);
 
     const [insertSection] = useInsertSectionMutation();
 
@@ -24,6 +25,7 @@ const SectionList = () => {
             <Card sx={{ minWidth: 275 }}>
                 <CardContent>
                     <Typography variant="h4">{section.name}</Typography>
+                    <Typography>{section.notes}</Typography>
                 </CardContent></Card></Grid>
     })}
         <Button onClick={() => setAdding(true)}>Add New</Button>
@@ -42,15 +44,21 @@ const SectionList = () => {
                 width: 400,
                 backgroundColor: 'white',
                 borderRadius: 5,
-                // bgcolor: 'background.paper',
-                // border: '2px solid #000',
-                // boxShadow: 24,
-                // p: 4,
             }} p={1}>
-                <Grid container spacing={2}><Grid item>
+                <Grid container spacing={2} direction={"column"}><Grid item>
                     <TextField id="section-name" label="Section Name" variant="outlined" onChange={(val) => setSectionName(val.target.value || '')} />
 
                 </Grid>
+                    <Grid item>
+
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Multiline"
+                            multiline
+                            rows={4}
+                            onChange={(val) => setNotes(val.target.value || '')}
+                        />
+                    </Grid>
 
                     <Grid item>
                         <Button variant="text" onClick={onClose}>Cancel</Button>
@@ -62,6 +70,7 @@ const SectionList = () => {
                                 insertSection({
                                     variables: {
                                         name: sectionName,
+                                        notes: notes
                                     }
                                 })
                                 onClose()
