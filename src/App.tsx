@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <div>
-          <p>Welcome to Garden Eyes!</p> <p>{JSON.stringify(data)}</p>
+          <p>Welcome to Garden Eyes!</p> <p>{JSON.stringify(data)}</p> Test
         </div>
       </header>
     </div>
