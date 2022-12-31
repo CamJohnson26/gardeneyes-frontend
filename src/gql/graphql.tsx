@@ -991,6 +991,13 @@ export type Subscription_RootSection_StreamArgs = {
   where?: InputMaybe<Section_Bool_Exp>;
 };
 
+export type DeletePlantMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type DeletePlantMutation = { __typename?: 'mutation_root', delete_plant_by_pk?: { __typename?: 'plant', id: string } | null };
+
 export type InsertPlantMutationVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['String']>;
@@ -998,6 +1005,13 @@ export type InsertPlantMutationVariables = Exact<{
 
 
 export type InsertPlantMutation = { __typename?: 'mutation_root', insert_plant_one?: { __typename: 'plant', id: string, name: string } | null };
+
+export type DeletePlantingMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type DeletePlantingMutation = { __typename?: 'mutation_root', delete_planting_by_pk?: { __typename?: 'planting', id: string } | null };
 
 export type InsertPlantingMutationVariables = Exact<{
   date?: InputMaybe<Scalars['date']>;
@@ -1013,6 +1027,13 @@ export type PlantingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type PlantingQuery = { __typename?: 'query_root', planting: Array<{ __typename?: 'planting', created_on: any, date: any, id: string, notes?: string | null, plantByPlant: { __typename?: 'plant', id: string, image: string, name: string }, sectionBySection: { __typename?: 'section', id: string, name: string } }> };
+
+export type DeleteSectionMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type DeleteSectionMutation = { __typename?: 'mutation_root', delete_section_by_pk?: { __typename?: 'section', id: string } | null };
 
 export type InsertSectionMutationVariables = Exact<{
   name?: InputMaybe<Scalars['String']>;
@@ -1033,6 +1054,39 @@ export type PlantQueryVariables = Exact<{ [key: string]: never; }>;
 export type PlantQuery = { __typename?: 'query_root', plant: Array<{ __typename: 'plant', id: string, name: string, image: string }> };
 
 
+export const DeletePlantDocument = gql`
+    mutation DeletePlant($id: String = "") {
+  delete_plant_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export type DeletePlantMutationFn = Apollo.MutationFunction<DeletePlantMutation, DeletePlantMutationVariables>;
+
+/**
+ * __useDeletePlantMutation__
+ *
+ * To run a mutation, you first call `useDeletePlantMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeletePlantMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deletePlantMutation, { data, loading, error }] = useDeletePlantMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeletePlantMutation(baseOptions?: Apollo.MutationHookOptions<DeletePlantMutation, DeletePlantMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeletePlantMutation, DeletePlantMutationVariables>(DeletePlantDocument, options);
+      }
+export type DeletePlantMutationHookResult = ReturnType<typeof useDeletePlantMutation>;
+export type DeletePlantMutationResult = Apollo.MutationResult<DeletePlantMutation>;
+export type DeletePlantMutationOptions = Apollo.BaseMutationOptions<DeletePlantMutation, DeletePlantMutationVariables>;
 export const InsertPlantDocument = gql`
     mutation InsertPlant($name: String = "", $image: String = "") {
   insert_plant_one(object: {image: $image, name: $name}) {
@@ -1069,6 +1123,39 @@ export function useInsertPlantMutation(baseOptions?: Apollo.MutationHookOptions<
 export type InsertPlantMutationHookResult = ReturnType<typeof useInsertPlantMutation>;
 export type InsertPlantMutationResult = Apollo.MutationResult<InsertPlantMutation>;
 export type InsertPlantMutationOptions = Apollo.BaseMutationOptions<InsertPlantMutation, InsertPlantMutationVariables>;
+export const DeletePlantingDocument = gql`
+    mutation DeletePlanting($id: String = "") {
+  delete_planting_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export type DeletePlantingMutationFn = Apollo.MutationFunction<DeletePlantingMutation, DeletePlantingMutationVariables>;
+
+/**
+ * __useDeletePlantingMutation__
+ *
+ * To run a mutation, you first call `useDeletePlantingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeletePlantingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deletePlantingMutation, { data, loading, error }] = useDeletePlantingMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeletePlantingMutation(baseOptions?: Apollo.MutationHookOptions<DeletePlantingMutation, DeletePlantingMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeletePlantingMutation, DeletePlantingMutationVariables>(DeletePlantingDocument, options);
+      }
+export type DeletePlantingMutationHookResult = ReturnType<typeof useDeletePlantingMutation>;
+export type DeletePlantingMutationResult = Apollo.MutationResult<DeletePlantingMutation>;
+export type DeletePlantingMutationOptions = Apollo.BaseMutationOptions<DeletePlantingMutation, DeletePlantingMutationVariables>;
 export const InsertPlantingDocument = gql`
     mutation InsertPlanting($date: date = "", $plant: String = "", $section: String = "", $notes: String = "") {
   insert_planting_one(
@@ -1153,6 +1240,39 @@ export function usePlantingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<P
 export type PlantingQueryHookResult = ReturnType<typeof usePlantingQuery>;
 export type PlantingLazyQueryHookResult = ReturnType<typeof usePlantingLazyQuery>;
 export type PlantingQueryResult = Apollo.QueryResult<PlantingQuery, PlantingQueryVariables>;
+export const DeleteSectionDocument = gql`
+    mutation DeleteSection($id: String = "") {
+  delete_section_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export type DeleteSectionMutationFn = Apollo.MutationFunction<DeleteSectionMutation, DeleteSectionMutationVariables>;
+
+/**
+ * __useDeleteSectionMutation__
+ *
+ * To run a mutation, you first call `useDeleteSectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteSectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteSectionMutation, { data, loading, error }] = useDeleteSectionMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteSectionMutation(baseOptions?: Apollo.MutationHookOptions<DeleteSectionMutation, DeleteSectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteSectionMutation, DeleteSectionMutationVariables>(DeleteSectionDocument, options);
+      }
+export type DeleteSectionMutationHookResult = ReturnType<typeof useDeleteSectionMutation>;
+export type DeleteSectionMutationResult = Apollo.MutationResult<DeleteSectionMutation>;
+export type DeleteSectionMutationOptions = Apollo.BaseMutationOptions<DeleteSectionMutation, DeleteSectionMutationVariables>;
 export const InsertSectionDocument = gql`
     mutation InsertSection($name: String = "", $notes: String = "") {
   insert_section_one(object: {name: $name, notes: $notes}) {

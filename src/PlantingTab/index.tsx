@@ -1,12 +1,13 @@
-import { useInsertPlantingMutation, useInsertPlantMutation, useInsertSectionMutation, usePlantingQuery, usePlantQuery, useSectionQuery } from "../gql/graphql";
-import { Grid, Card, CardMedia, CardContent, Typography, Button, Modal, Box, TextField, Autocomplete } from '@mui/material';
+import { useDeletePlantingMutation, useInsertPlantingMutation, useInsertPlantMutation, useInsertSectionMutation, usePlantingQuery, usePlantQuery, useSectionQuery } from "../gql/graphql";
+import { Grid, Card, CardMedia, CardContent, Typography, Button, Modal, Box, TextField, Autocomplete, CardActions } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const PlantingList = () => {
-    const { data } = usePlantingQuery();
+    const { data, refetch } = usePlantingQuery();
 
     const [adding, setAdding] = useState(false);
     const [sectionId, setSectionId] = useState<string | null>(null);
@@ -32,6 +33,7 @@ const PlantingList = () => {
 
 
     const [insertPlanting] = useInsertPlantingMutation();
+    const [deletePlanting] = useDeletePlantingMutation();
 
     const onClose = () => {
         setSectionId(null)
@@ -56,9 +58,23 @@ const PlantingList = () => {
                     <Typography variant="h4">{planting.date}</Typography>
                     <Typography variant="h5">{planting.sectionBySection.name}</Typography>
                     <Typography>{planting.notes}</Typography>
-                </CardContent></Card></Grid>
+                </CardContent>
+                <CardActions>
+                    <Button size="small" startIcon={<DeleteIcon />} onClick={async () => {
+                        await deletePlanting({
+                            variables: {
+                                id: planting.id
+                            }
+                        })
+                        await refetch();
+                    }
+                    }>Delete</Button>
+                </CardActions></Card></Grid>
     })}
-        <Button onClick={() => setAdding(true)}>Add New</Button>
+        <Button onClick={async () => {
+            await setAdding(true);
+
+        }}>Add New</Button>
         <Modal
             open={adding}
             onClose={onClose}
@@ -128,12 +144,12 @@ const PlantingList = () => {
 
                     <Grid item>
                         <Button variant="text" onClick={onClose}>Cancel</Button>
-                        <Button variant="contained" onClick={() => {
+                        <Button variant="contained" onClick={async () => {
                             if (!date || !plantId || !sectionId) {
                                 alert('Missing some data!')
                             } else {
 
-                                insertPlanting({
+                                await insertPlanting({
                                     variables: {
                                         date,
                                         plant: plantId,
@@ -141,6 +157,8 @@ const PlantingList = () => {
                                         notes,
                                     }
                                 })
+
+                                await refetch();
                                 onClose()
                             }
                         }}>Create</Button></Grid>

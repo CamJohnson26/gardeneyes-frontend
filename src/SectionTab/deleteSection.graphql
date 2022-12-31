@@ -1,0 +1,5 @@
+mutation DeleteSection($id: String = "") {
+  delete_section_by_pk(id: $id) {
+    id
+  }
+}

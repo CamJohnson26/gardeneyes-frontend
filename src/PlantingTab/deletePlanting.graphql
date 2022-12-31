@@ -1,0 +1,6 @@
+
+mutation DeletePlanting($id: String = "") {
+  delete_planting_by_pk(id: $id) {
+    id
+  }
+}

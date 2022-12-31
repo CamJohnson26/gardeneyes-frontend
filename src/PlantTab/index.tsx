@@ -1,15 +1,17 @@
-import { useInsertPlantMutation, usePlantQuery } from "../gql/graphql";
-import { Grid, Card, CardMedia, CardContent, Typography, Button, Modal, Box, TextField } from '@mui/material';
+import { useDeletePlantMutation, useInsertPlantMutation, usePlantQuery } from "../gql/graphql";
+import { Grid, Card, CardMedia, CardContent, Typography, Button, Modal, Box, TextField, CardActions } from '@mui/material';
 import { useState } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const PlantList = () => {
-    const { data } = usePlantQuery();
+    const { data, refetch } = usePlantQuery();
 
     const [adding, setAdding] = useState(false);
     const [plantName, setPlantName] = useState<string | null>(null);
     const [imageUrl, setImageUrl] = useState<string | null>(null);
 
     const [insertPlant] = useInsertPlantMutation();
+    const [deletePlant] = useDeletePlantMutation()
 
     const onClose = () => {
         setPlantName(null)
@@ -30,7 +32,18 @@ const PlantList = () => {
             />
                 <CardContent>
                     <Typography variant="h4">{plant.name}</Typography>
-                </CardContent></Card></Grid>
+                </CardContent>
+                <CardActions>
+                    <Button size="small" startIcon={<DeleteIcon />} onClick={async () => {
+                        await deletePlant({
+                            variables: {
+                                id: plant.id
+                            }
+                        })
+                        await refetch();
+                    }
+                    }>Delete</Button>
+                </CardActions></Card></Grid>
     })}
         <Button onClick={() => setAdding(true)}>Add New</Button>
         <Modal
@@ -63,17 +76,18 @@ const PlantList = () => {
 
                     <Grid item>
                         <Button variant="text" onClick={onClose}>Cancel</Button>
-                        <Button variant="contained" onClick={() => {
+                        <Button variant="contained" onClick={async () => {
                             if (!plantName || !imageUrl) {
                                 alert('Missing data!')
                             } else {
 
-                                insertPlant({
+                                await insertPlant({
                                     variables: {
                                         name: plantName,
                                         image: imageUrl
                                     }
                                 })
+                                await refetch();
                                 onClose()
                             }
                         }}>Create</Button></Grid>
